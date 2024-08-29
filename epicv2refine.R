@@ -4,7 +4,7 @@ epicv2refine <- function(beta_matrix) { #whole function takes like 5 mins to run
   #load list of probes to remove, and probes to take a mean of
   load(url('https://github.com/bethan-mallabar-rimmer/epicv2refine/raw/main/FINAL_PROBES.RData'))
   
-  if (substr(PROBES_TO_MEAN$takemean,1,4) == "mean") {
+  if (substr(PROBES_TO_MEAN$takemean[1],1,4) == "mean") {
     #I swear the PROBES_TO_MEAN file I uploaded to github has replicate groups in the format 1, 2, 3... but sometimes it randomly
     #reverts back to a previous format 'mean1', 'mean2', 'mean3' so this bit of code hopefully fixes that
     PROBES_TO_MEAN$takemean <- substr(PROBES_TO_MEAN$takemean, 5, nchar(PROBES_TO_MEAN$takemean))
