@@ -2,7 +2,14 @@
 
 epicv2refine <- function(beta_matrix) { #whole function takes like 5 mins to run
   #load list of probes to remove, and probes to take a mean of
-  load(R-FILE-HERE)
+  load(url('https://github.com/bethan-mallabar-rimmer/epicv2refine/raw/main/FINAL_PROBES.RData'))
+  
+  if (substr(PROBES_TO_MEAN$takemean,1,4) == "mean") {
+    #I swear the PROBES_TO_MEAN file I uploaded to github has replicate groups in the format 1, 2, 3... but sometimes it randomly
+    #reverts back to a previous format 'mean1', 'mean2', 'mean3' so this bit of code hopefully fixes that
+    PROBES_TO_MEAN$takemean <- substr(PROBES_TO_MEAN$takemean, 5, nchar(PROBES_TO_MEAN$takemean))
+    PROBES_TO_MEAN$takemean <- as.numeric(PROBES_TO_MEAN$takemean)
+  }
   
   #remove inferior and chromosome 0 probes from beta matrix
   beta2 <- beta_matrix[!(rownames(beta_matrix) %in% PROBES_TO_REMOVE),]
