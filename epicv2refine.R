@@ -2,7 +2,7 @@
 #by default the function calculates variance of probe signal within replicate groups, and removes outliers with very high variance
 #set remove_high_var = FALSE to take a mean of replicates with high variance, instead of removing them
 
-epicv2refine <- function(beta_matrix, remove_high_var = TRUE) { #whole function takes like 5 mins to run
+epicv2refine <- function(beta_matrix, remove_high_var = TRUE, print_loop = FALSE) { #whole function takes like 5 mins to run
   #load list of probes to remove, and probes to take a mean of
   load(url('https://github.com/bethan-mallabar-rimmer/epicv2refine/raw/main/FINAL_PROBES.RData'))
   
@@ -35,7 +35,9 @@ epicv2refine <- function(beta_matrix, remove_high_var = TRUE) { #whole function 
     if (class(temp)[1] == "matrix") {
       x <- nrow(temp)
       if (x > 0) {
-        #print(i) #prints iteration of for loop, useful for debugging but otherwise a bad idea
+        if  (print_loop == TRUE) {
+        print(i) #prints iteration of for loop, useful for debugging but otherwise a bad idea
+        }
         
         if (remove_high_var == TRUE) {
           #calculate variance of this replicate group (including all replicates in all samples)
