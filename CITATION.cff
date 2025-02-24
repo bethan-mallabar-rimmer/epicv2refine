@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Mallabar-Rimmer
+    given-names: Bethan
+    orcid: https://orcid.org/0009-0004-4345-8414
+title: "epicv2refine"
+version: 1.0.14
+date-released: 2024-09-06
+url: "https://github.com/bethan-mallabar-rimmer/epicv2refine"
